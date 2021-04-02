@@ -13,9 +13,10 @@ public class ImageModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false)
-    private String name;
+    private String names;
     @Lob
-    @Column(columnDefinition = "LONGBLOB")
+//    @Column(columnDefinition = "LONGBLOB") //Not for postgreSQL, contain in MYSQL
+    @Column(columnDefinition = "bytea")
     private byte[] imageBytes;
     @JsonIgnore
     private Long userId;

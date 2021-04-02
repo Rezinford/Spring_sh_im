@@ -24,9 +24,9 @@ public class Post {
 
     @Column
     @ElementCollection(targetClass = String.class)
-    private Set<String> likedUsers = new HashSet<>();
+    private Set<String> likedPlayers = new HashSet<>();
     @ManyToOne(fetch = FetchType.LAZY)
-    private User user;
+    private Player player;
     @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, mappedBy = "post", orphanRemoval = true)
     private List<Comment> comments = new ArrayList<>();
     @Column(updatable = false)

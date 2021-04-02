@@ -15,11 +15,11 @@ public class Comment {
     @ManyToOne(fetch = FetchType.EAGER)
     private Post post;
     @Column(nullable = false)
-    private String username;
+    private String playerName;
     @Column(nullable = false)
-    private Long userId;
+    private Long playerId;
     @Column(columnDefinition = "text", nullable = false)
-    private String massege;
+    private String massage;
     @Column(updatable = false)
     private LocalDateTime createdDate;
 
