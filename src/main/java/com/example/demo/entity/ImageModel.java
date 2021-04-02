@@ -19,7 +19,7 @@ public class ImageModel {
     @Column(columnDefinition = "bytea")
     private byte[] imageBytes;
     @JsonIgnore
-    private Long userId;
+    private Long playerId;
     @JsonIgnore
     private Long postId;
 }
