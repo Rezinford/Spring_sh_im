@@ -13,16 +13,17 @@ import java.util.Set;
 
 @Data
 @Entity
-public class Player {
+@Table(name = "users")
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false)
-    private String names;
+    @Column(name = "name", nullable = false)
+    private String name;
     @Column(unique = true, updatable = true)
-    private String playerName;
+    private String userName;
     @Column(nullable = false)
-    private String lastname;
+    private String lastName;
     @Column(unique = true)
     private String email;
     @Column(columnDefinition = "text")
@@ -31,10 +32,10 @@ public class Player {
     private String password;
 
     @ElementCollection(targetClass =  ERole.class)
-    @CollectionTable(name = "player_role", joinColumns = @JoinColumn(name = "player_id"))
+    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     private Set<ERole> role = new HashSet<>();
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "player", orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user", orphanRemoval = true)
     private List<Post> posts = new ArrayList<>();
 
     @JsonFormat(pattern =  "yyyy-mm-dd HH:mm:ss")
