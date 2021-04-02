@@ -1,6 +1,6 @@
-package com.example.entity;
+package com.example.demo.entity;
 
-import com.example.entity.enums.ERole;
+import com.example.demo.entity.enums.ERole;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
