@@ -9,7 +9,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UserServices {
     public static final Logger LOG = LoggerFactory.getLogger(UserServices.class);
 
@@ -22,7 +24,7 @@ public class UserServices {
         this.passwordEncoder = bCryptPasswordEncoder;
     }
 
-    public User createUSer(SingUpRequest userIn){
+    public User createUSer(SingUpRequest userIn) {
         User user = new User();
         user.setEmail(userIn.getEmail());
         user.setName(userIn.getFirstName());
@@ -31,12 +33,12 @@ public class UserServices {
         user.setPassword(passwordEncoder.encode(userIn.getPassword()));
         user.getRole().add(ERole.ROLE_USER);
 
-        try{
+        try {
             LOG.info("Saving User {}", userIn.getEmail());
             return userRepository.save(user);
-        }catch (Exception e){
+        } catch (Exception e) {
             LOG.error("Error during registration. {}", e.getMessage());
-            throw new UseExistException("This user "+ user.getUsername() + "already exist. Please check credentials");
+            throw new UseExistException("This user " + user.getUsername() + "already exist. Please check credentials");
         }
 
     }
