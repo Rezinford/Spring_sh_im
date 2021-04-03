@@ -24,19 +24,18 @@ public class CustomUserDetailServices implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String userName){
+    public UserDetails loadUserByUsername(String userName) {
         User user = userRepository.findUserByEmail(userName)
-                .orElseThrow(()-> new UsernameNotFoundException("User not found with userName: "+ userName));
-
+                .orElseThrow(() -> new UsernameNotFoundException("User not found with userName: " + userName));
 
         return build(user);
     }
 
-    public User loadUserById(Long id){
-        return userRepository.findUserById(id).orElse( null);
+    public User loadUserById(Long id) {
+        return userRepository.findUserById(id).orElse(null);
     }
 
-    public static User build(User user){
+    public static User build(User user) {
         List<GrantedAuthority> authorities = user.getRole().stream()
                 .map(role -> new SimpleGrantedAuthority(role.name()))
                 .collect(Collectors.toList());
