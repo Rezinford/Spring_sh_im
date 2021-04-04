@@ -19,7 +19,7 @@ public class User  implements UserDetails {
     private Long id;
     @Column(name = "name", nullable = false)
     private String name;
-    @Column(unique = true, updatable = true)
+    @Column(unique = true, updatable = false)
     private String userName;
     @Column(nullable = false)
     private String lastName;
