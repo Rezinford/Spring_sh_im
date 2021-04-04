@@ -19,7 +19,7 @@ public class Comment {
     @Column(nullable = false)
     private Long userId;
     @Column(columnDefinition = "text", nullable = false)
-    private String massage;
+    private String message;
     @Column(updatable = false)
     private LocalDateTime createdDate;
 
