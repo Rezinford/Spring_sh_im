@@ -16,14 +16,14 @@ import org.springframework.stereotype.Service;
 import java.security.Principal;
 
 @Service
-public class UserServices {
-    public static final Logger LOG = LoggerFactory.getLogger(UserServices.class);
+public class UserService {
+    public static final Logger LOG = LoggerFactory.getLogger(UserService.class);
 
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserServices(UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public UserService(UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userRepository = userRepository;
         this.passwordEncoder = bCryptPasswordEncoder;
     }

@@ -6,7 +6,7 @@ import com.example.demo.payload.request.LoginRequest;
 import com.example.demo.payload.request.SingUpRequest;
 import com.example.demo.security.JWTTokenProvider;
 import com.example.demo.security.SecurityConstants;
-import com.example.demo.services.UserServices;
+import com.example.demo.services.UserService;
 import com.example.demo.validations.ResponseErrorValidation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -34,7 +34,7 @@ public class AuthController  {
     @Autowired
     private ResponseErrorValidation responseErrorValidation;
     @Autowired
-    private UserServices userServices;
+    private UserService userServices;
 
     @PostMapping("/singin")
     public ResponseEntity<Object> authenticateUser (@Valid @RequestBody LoginRequest loginRequest, BindingResult bindingResult) {
