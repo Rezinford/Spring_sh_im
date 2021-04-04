@@ -2,6 +2,7 @@ package com.example.demo.web;
 
 import com.example.demo.payload.reponse.JWTTokenSuccessResponse;
 import com.example.demo.payload.reponse.MessageResponse;
+import com.example.demo.payload.request.LoginRequest;
 import com.example.demo.payload.request.SingUpRequest;
 import com.example.demo.security.JWTTokenProvider;
 import com.example.demo.security.SecurityConstants;
@@ -18,12 +19,11 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.swing.text.StringContent;
 import javax.validation.Valid;
 
 @CrossOrigin
 @RestController
-@RequestMapping("api/auth")
+@RequestMapping("/api/auth")
 @PreAuthorize("permitAll()")
 public class AuthController  {
 
@@ -36,8 +36,8 @@ public class AuthController  {
     @Autowired
     private UserServices userServices;
 
-
-    public ResponseEntity<Object> authentication (@Valid @RequestBody SingUpRequest loginRequest, BindingResult bindingResult) {
+    @PostMapping("/singin")
+    public ResponseEntity<Object> authenticateUser (@Valid @RequestBody LoginRequest loginRequest, BindingResult bindingResult) {
         ResponseEntity<Object> errors = responseErrorValidation.mapValidationService(bindingResult);
         if (!ObjectUtils.isEmpty(errors)) return errors;
 
@@ -52,11 +52,11 @@ public class AuthController  {
     }
 
 
-    @PostMapping("/singUp")
+    @PostMapping("/singup")
     public ResponseEntity<Object> registerUser(@Valid @RequestBody SingUpRequest singUpRequest, BindingResult bindingResult){
         ResponseEntity<Object> errors  = responseErrorValidation.mapValidationService(bindingResult);
         if(!ObjectUtils.isEmpty(errors)) return errors;
-        userServices.createUSer(singUpRequest);
+        userServices.createUser(singUpRequest);
         return ResponseEntity.ok(new MessageResponse("User register successfully"));
     }
 

@@ -2,7 +2,7 @@ package com.example.demo.security;
 
 public class SecurityConstants {
 
-    public static final String SING_UP_URLS= "/api/auth/**";
+    public static final String SING_UP_URLS= "/api/auth/*";
 
     public static final String SECRET = "SecretKeyGenJWT";
     public static final String TOKEN_PREFIX = "Bearer ";

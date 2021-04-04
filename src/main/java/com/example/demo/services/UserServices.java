@@ -24,7 +24,7 @@ public class UserServices {
         this.passwordEncoder = bCryptPasswordEncoder;
     }
 
-    public User createUSer(SingUpRequest userIn) {
+    public User createUser(SingUpRequest userIn) {
         User user = new User();
         user.setEmail(userIn.getEmail());
         user.setName(userIn.getFirstName());
